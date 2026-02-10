@@ -141,6 +141,34 @@ public class CLL {
         size--;
     }
 
+void reverse() {
+
+    if (head == null || head.next == head) {
+        return;
+    }
+
+    Node prev = tail;
+    Node curr = head;
+    Node next;
+
+    while (true) {
+        next = curr.next;
+        curr.next = prev;
+        prev = curr;
+        curr = next;
+
+        if (curr == head) {
+            break;
+        }
+    }
+
+    Node temp = head;
+    head = tail;
+    tail = temp;
+}
+
+
+
     // display
     void display() {
 
@@ -175,5 +203,10 @@ public class CLL {
 
         list.deleteAtPosition(2);
         list.display(); // 15 20
+        list.reverse();
+        list.display(); // 20 15
+
+
+
     }
 }

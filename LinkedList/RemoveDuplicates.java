@@ -26,6 +26,7 @@ public class RemoveDuplicates {
 
     void display() {
         if (head == null) {
+            
             System.out.println("empty");
             return;
         }
@@ -46,7 +47,7 @@ public class RemoveDuplicates {
 
         while (current != null) {
             if (set.contains(current.data)) {
-                prev.next = current.next; // skip duplicate
+                prev.next = current.next;
             } else {
                 set.add(current.data);
                 prev = current;
@@ -63,9 +64,9 @@ public class RemoveDuplicates {
             list.addAtLast(sc.nextInt());
         }
 
-        // For sorted list, use: list.RemoveDup();
-        // For unsorted list, use:
+        
         list.removeDupUnsorted();
         list.display();
+        sc.close();
     }
 }

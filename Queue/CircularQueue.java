@@ -1,13 +1,14 @@
 import java.util.Scanner;
-class Queue {
+
+class CirQueue {
     int[] arr;
     int front;
     int rear;
     int capacity;
     int size;
 
-    
-    Queue(int capacity) {
+ 
+    CirQueue(int capacity) {
         this.capacity = capacity;
         arr = new int[capacity];
         front = -1;
@@ -15,17 +16,17 @@ class Queue {
         size = 0;
     }
 
-    
+
     boolean isFull() {
-        return rear == capacity - 1;
+        return size == capacity;
     }
 
-    
+
     boolean isEmpty() {
-        return front == -1 || front > rear;
+        return size == 0;
     }
 
-    
+  
     void enqueue(int x) {
         if (isFull()) {
             System.out.println("Queue Overflow");
@@ -36,12 +37,14 @@ class Queue {
             front = 0;
         }
 
-        arr[++rear] = x;
+        rear = (rear + 1) % capacity;
+        arr[rear] = x;
         size++;
+
         System.out.println(x + " inserted");
     }
 
-    
+
     void dequeue() {
         if (isEmpty()) {
             System.out.println("Queue Underflow");
@@ -49,17 +52,17 @@ class Queue {
         }
 
         System.out.println(arr[front] + " removed");
-        front++;
+
+        front = (front + 1) % capacity;
         size--;
 
 
-        if (front > rear) {
+        if (size == 0) {
             front = -1;
             rear = -1;
         }
     }
 
-    
     void peek() {
         if (isEmpty()) {
             System.out.println("Queue is empty");
@@ -69,25 +72,28 @@ class Queue {
     }
 
     
-    
 void reverse() {
 
-    if (isEmpty() || front == rear) {
-        return; 
+    if (isEmpty() || size == 1) {
+        return;
     }
 
     int i = front;
-    int j = rear;
+    int j = (front + size - 1) % capacity;
 
-    while (i < j) {
+    for (int count = 0; count < size / 2; count++) {
+
         int temp = arr[i];
         arr[i] = arr[j];
         arr[j] = temp;
-        i++;
-        j--;
+
+        i = (i + 1) % capacity;
+        j = (j - 1 + capacity) % capacity;
     }
 }
 
+
+   
     void display() {
         if (isEmpty()) {
             System.out.println("Queue is empty");
@@ -95,23 +101,25 @@ void reverse() {
         }
 
         System.out.print("Queue elements: ");
-        for (int i = front; i <= rear; i++) {
+        int i = front;
+        for (int count = 0; count < size; count++) {
             System.out.print(arr[i] + " ");
+            i = (i + 1) % capacity;
         }
         System.out.println();
     }
 
-    
+
     void getSize() {
         System.out.println("Queue size: " + size);
     }
 }
 
-public class QueueArray {
+public class CircularQueue {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         int capacity = sc.nextInt();
-        Queue q = new Queue(capacity);
+        CirQueue q = new CirQueue(capacity);
 
         q.enqueue(10);
         q.enqueue(20);
@@ -120,14 +128,18 @@ public class QueueArray {
 
         q.dequeue();
         q.display();
+
+        q.enqueue(40);
+        q.enqueue(50);
+        q.enqueue(60);   
+
+        q.display();
         q.reverse();
         q.display();
-
         q.peek();
         q.getSize();
 
-
-
         sc.close();
     }
+
 }

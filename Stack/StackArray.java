@@ -58,7 +58,7 @@ class Stack {
         return top == capacity - 1;
     }
 
-    // REVERSE STACK (EASIEST WAY FOR ARRAY)
+    
     void reverse() {
         if (top == -1) {
             System.out.println("Stack is empty");
@@ -103,3 +103,5 @@ public class StackArray {
         sc.close();
     }
 }
+
+
