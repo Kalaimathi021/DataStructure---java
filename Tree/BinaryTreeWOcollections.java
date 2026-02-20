@@ -30,7 +30,7 @@ class MyQueue {
 
     boolean isEmpty() {
         return front == null;
-    }
+    } 
 
     void enqueue(Node data) {
         QNode newNode = new QNode(data);

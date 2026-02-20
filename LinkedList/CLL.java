@@ -31,7 +31,7 @@ public class CLL {
         size++;
     }
 
-    // add at end (index size)
+
     void addAtLast(int x) {
         Node newNode = new Node(x);
 
@@ -47,7 +47,6 @@ public class CLL {
         size++;
     }
 
-    // 🔥 add at position (0-based)
     void addAtPosition(int x, int pos) {
 
         if (pos < 0 || pos > size) {
@@ -77,7 +76,6 @@ public class CLL {
         size++;
     }
 
-    // delete first (index 0)
     void deleteAtFirst() {
 
         if (head == null) {
@@ -169,7 +167,6 @@ void reverse() {
 
 
 
-    // display
     void display() {
 
         if (head == null) {
@@ -186,7 +183,7 @@ void reverse() {
         System.out.println();
     }
 
-    // MAIN
+
     public static void main(String[] args) {
 
         CLL list = new CLL();
@@ -196,15 +193,14 @@ void reverse() {
         list.addAtPosition(30, 2);
         list.addAtPosition(15, 1);
 
-        list.display(); // 10 15 20 30
 
         list.deleteAtPosition(0);
-        list.display(); // 15 20 30
+        list.display(); 
 
         list.deleteAtPosition(2);
-        list.display(); // 15 20
+        list.display(); 
         list.reverse();
-        list.display(); // 20 15
+        list.display();
 
 
 

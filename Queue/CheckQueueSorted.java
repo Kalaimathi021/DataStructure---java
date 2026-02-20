@@ -60,5 +60,8 @@ public class CheckQueueSorted {
 
         System.out.println(ans);
 
+
+        sc.close();
+
     }
 }
